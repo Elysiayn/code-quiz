@@ -11,17 +11,23 @@
 
 <body>
   <header>
+    <div class="top">
+      <ul id="topDiv">
+        <li id="highScores"><a href="./assets/highscores.html">View High Scores</a></li>
+        <li id="timer">Timer:</li>
+      </ul>
+    </div>
     <div>
       <h1>Code-Quiz Challenge</h1>
     </div>
   </header>
 
   <!-- main body of quiz -->
-  <main class="container card">
+  <main class="card">
     <div class="instructions" id="instructions">
       <h2>Instructions:</h2>
       <p>Answer the following questions within the time limit. Incorrect answers will result in a time 
-        penalty which will directly affect your score/time by ten seconds. Click the START button to begin 
+        penalty which will directly affect your score and your time by ten seconds. Click the START button to begin 
         quiz!
       </p>
         <div class="start">
@@ -29,11 +35,34 @@
         </div>
     </div>
 
-    <div class="grid">
-      <div id=quiz>
-        <p id="questions"></p>
+    <div class="container">
+      <div class="grid card hidden quizContainer">
+        <h2 class="question"></h2>
+        <div class="answersContainer">
+          <div class="answerItem">
+            <button class="btn" id="btn-a"></button>
+          </div>
+          <div class="answerItem">
+            <button class="btn" id="btn-b"></button>
+          </div>
+          <div class="answerItem">
+            <button class="btn" id="btn-c"></button>
+          </div>
+          <div class="answerItem">
+            <button class="btn" id="btn-d"></button>
+          </div>
+        </div>
       </div>
-    </div>
+      // quiz over
+      <div class="done">
+        <h3 class="recordName">Enter your name!</h3>
+        <form>
+          <input class="input-field" id="name" type="text" placeholder= "Your name goes here!">
+            <button class="submitName" id="storeSubmit"> Submit!</button>
+          </input>
+        </form>
+      </div>
+    </div>  
   </main>
 
 

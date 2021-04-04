@@ -44,3 +44,22 @@ var quizArray = [
     }, 
 ]
 
+var background = document.querySelector('body');
+var quiz = document.querySelector('.quizContainer');
+var result = document.querySelector('.contianer');
+var start = document.querySelector('#start-btn');
+var done = document.querySelector('.done');
+var timerEl = document.querySelector('.timer');
+var questionCounter= 0;
+var currentScore= 100;
+var highScores = [];
+
+// to remove sections for quiz implementation
+var instructionsEl = document.querySelector('.instructions');
+var startDiv = document.querySelector('.start');
+var quizDone = document.querySelector('.done');
+
+
+
+
+
