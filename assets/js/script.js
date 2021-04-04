@@ -67,7 +67,7 @@ var startQuiz = function() {
 
   timerStart = setInterval(function() {
     timeLeft--;
-    timerEl.textContent = "Time: + timeLeft;
+    timerEl.textContent = "Time: " + timeLeft;
     if (timeLeft <= 0) {
       endQuiz();
     }
@@ -75,7 +75,24 @@ var startQuiz = function() {
 
   for (let j = 0; j < questions[counter].answers.length; j++) {
     currentAnswer = document.getElementById(i + 1);
-    currentAnswer.textContent = questions[counter].answer[i];
+    currentAnswer.textContent = questions[counter].answers[j];
+    var buttonIndex = j + 1;
+    currentAnswer.addEventListener("click", () => {
+      checkAnswer(j + 1);
+    });
+  }
+  nextQuestion();
+};
+
+
+// cycles through array, increases counter 
+var nextQuestion = function() {
+  var myQuestion = questions[counter].questions;
+  questionName.textCOntent = myQuestion;
+
+  for (let i = 0; i < questions[counter].answers.length; I++) {
+    var currentAnswer = document.getElementById(i + 1);
+    currentAnswer.textCOntent = questions[counter].answers[i];
   };
 };
 
