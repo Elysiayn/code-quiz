@@ -58,7 +58,26 @@ var highScores = [];
 var instructionsEl = document.querySelector('.instructions');
 var startDiv = document.querySelector('.start');
 var quizDone = document.querySelector('.done');
+var storeScores = document.querySelector("#storeSubmit"); 
 
+var startQuiz = function() {
+  instructionsEl.remove();
+  startDiv.remove();
+  quiz.getElementsByClassName.display = "block";
+
+  timerStart = setInterval(function() {
+    timeLeft--;
+    timerEl.textContent = "Time: + timeLeft;
+    if (timeLeft <= 0) {
+      endQuiz();
+    }
+  }, 1000);
+
+  for (let j = 0; j < questions[counter].answers.length; j++) {
+    currentAnswer = document.getElementById(i + 1);
+    currentAnswer.textContent = questions[counter].answer[i];
+  };
+};
 
 
 
