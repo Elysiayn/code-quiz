@@ -96,6 +96,33 @@ var nextQuestion = function() {
   };
 };
 
+// verifies answers, provides color feedback on result
+var checkAnswer = function(buttonIndex) {
+  var correctAnswer = questions[counter].correct;
+  if (correctAnswer === buttonIndex) {
+    result.style.backgroundColor = "lightgreen"
+    setTimeout(function() {
+      result.style.backgroundColor = "white";
+    }, 250);
+  }
+  else {
+    result.style.backgroundColor = "tomato"
+    setTimeout(function() {
+      result.style.backgroundColor = "white";
+    }, 250);
+    timeLeft -= 15;
+    timerEl.textContent = "Time: " + timeLeft;
+  }
+
+  if (counter >= 4) {
+    endQuiz();
+  }
+  else {
+    counter ++;
+    nextQuestion();
+  }
+};
+
 
 
 
