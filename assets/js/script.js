@@ -51,31 +51,32 @@ var start = document.querySelector('#start-btn');
 var done = document.querySelector('.done');
 var timerEl = document.querySelector('.timer');
 var questionCounter= 0;
-var currentScore= 100;
+var timeRemaining= 75;
 var highScores = [];
 
 // to remove sections for quiz implementation
-var instructionsEl = document.querySelector('.instructions');
+var instructions = document.querySelector('.instructions');
 var startDiv = document.querySelector('.start');
 var quizDone = document.querySelector('.done');
 var storeScores = document.querySelector("#storeSubmit"); 
+var quizOver = document.querySelector(".quizOver");
 
 var startQuiz = function() {
-  instructionsEl.remove();
+  instructions.remove();
   startDiv.remove();
   quiz.getElementsByClassName.display = "block";
 
   timerStart = setInterval(function() {
-    timeLeft--;
-    timerEl.textContent = "Time: " + timeLeft;
-    if (timeLeft <= 0) {
+    timeRemaining--;
+    timerEl.textContent = "Time: " + timeRemaining;
+    if (timeRemaining <= 0) {
       endQuiz();
     }
   }, 1000);
 
-  for (let j = 0; j < questions[counter].answers.length; j++) {
+  for (let j = 0; j < quizArray[questionCounter].answers.length; j++) {
     currentAnswer = document.getElementById(i + 1);
-    currentAnswer.textContent = questions[counter].answers[j];
+    currentAnswer.textContent = quizArray[questionCounter].answers[j];
     var buttonIndex = j + 1;
     currentAnswer.addEventListener("click", () => {
       checkAnswer(j + 1);
@@ -84,21 +85,20 @@ var startQuiz = function() {
   nextQuestion();
 };
 
-
 // cycles through array, increases counter 
 var nextQuestion = function() {
-  var myQuestion = questions[counter].questions;
+  var myQuestion = quizArray[questionCounter].quizArray;
   questionName.textCOntent = myQuestion;
 
-  for (let i = 0; i < questions[counter].answers.length; I++) {
+  for (let i = 0; i < quizArray[questionCounter].answers.length; i++) {
     var currentAnswer = document.getElementById(i + 1);
-    currentAnswer.textCOntent = questions[counter].answers[i];
+    currentAnswer.textCOntent = quizArray[questionCounter].answers[i];
   };
 };
 
 // verifies answers, provides color feedback on result
 var checkAnswer = function(buttonIndex) {
-  var correctAnswer = questions[counter].correct;
+  var correctAnswer = quizArray[questionCounter].correct;
   if (correctAnswer === buttonIndex) {
     result.style.backgroundColor = "lightgreen"
     setTimeout(function() {
@@ -110,19 +110,54 @@ var checkAnswer = function(buttonIndex) {
     setTimeout(function() {
       result.style.backgroundColor = "white";
     }, 250);
-    timeLeft -= 15;
-    timerEl.textContent = "Time: " + timeLeft;
+    timeRemaining -= 15;
+    timerEl.textContent = "Time: " + timeRemaining;
   }
 
-  if (counter >= 4) {
+  if (questionCounter >= 5) {
     endQuiz();
   }
   else {
-    counter ++;
+    questionCounter ++;
     nextQuestion();
   }
 };
 
+var timerStart;
+
+var endQuiz = function () {
+  clearInterval(timerStart);
+  result.remove();
+  quizDone.style.display = "block";
+
+  var endScore = document.createElement("p");
+  // endScore.className = "end-score" 
+  endScore.textContent = "Your score result is " + timeRemaining + ".";
+  quizOver.appendChild(endScore);
+}
+
+
+// Scores into local storage 
+var scoreStore = function() {
+  var name = document.getElementById(".recordName").nodeValue.trim();
+
+  while (name === "" || name === null) {
+    name = window.prompt("Enter your name to register your high-score!")
+  }
+  var scoresObj = {
+    name: name,
+    score: timeRemaining,
+  };
+  scoresArray.push(scoresObj);
+
+  localStorage.setItem(name, JSON.stringify({name, timeRemaining}));
+};
+
+start.addEventListener("click", startQuiz);
+storeScores.addEventListener("click", function() {
+  scoreStore();
+  location.href="./assets/highscores.html";
+});
 
 
 
