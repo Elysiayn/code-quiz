@@ -64,7 +64,9 @@ var quizOver = document.querySelector(".quizOver");
 var startQuiz = function() {
   instructions.remove();
   startDiv.remove();
-  quiz.getElementsByClassName.display = "block";
+  quiz.getElementsByClassName.display = "block"; 
+  quiz.classList.remove("hidden")
+  quiz.classList.remove("card")
 
   timerStart = setInterval(function() {
     timeRemaining--;
@@ -125,39 +127,39 @@ var checkAnswer = function(buttonIndex) {
 
 var timerStart;
 
-var endQuiz = function () {
-  clearInterval(timerStart);
-  result.remove();
-  quizDone.style.display = "block";
+// var endQuiz = function () {
+//   clearInterval(timerStart);
+//   result.remove();
+//   quizDone.style.display = "block";
 
-  var endScore = document.createElement("p");
-  // endScore.className = "end-score" 
-  endScore.textContent = "Your score result is " + timeRemaining + ".";
-  quizOver.appendChild(endScore);
-}
+//   var endScore = document.createElement("p");
+//   // endScore.className = "end-score" 
+//   endScore.textContent = "Your score result is " + timeRemaining + ".";
+//   quizOver.appendChild(endScore);
+// }
 
 
-// Scores into local storage 
-var scoreStore = function() {
-  var name = document.getElementById(".recordName").nodeValue.trim();
+// // Scores into local storage 
+// var scoreStore = function() {
+//   var name = document.getElementById(".recordName").nodeValue.trim();
 
-  while (name === "" || name === null) {
-    name = window.prompt("Enter your name to register your high-score!")
-  }
-  var scoresObj = {
-    name: name,
-    score: timeRemaining,
-  };
-  scoresArray.push(scoresObj);
+//   while (name === "" || name === null) {
+//     name = window.prompt("Enter your name to register your high-score!")
+//   }
+//   var scoresObj = {
+//     name: name,
+//     score: timeRemaining,
+//   };
+//   scoresArray.push(scoresObj);
 
-  localStorage.setItem(name, JSON.stringify({name, timeRemaining}));
-};
+//   localStorage.setItem(name, JSON.stringify({name, timeRemaining}));
+// };
 
-start.addEventListener("click", startQuiz);
-storeScores.addEventListener("click", function() {
-  scoreStore();
-  location.href="./assets/highscores.html";
-});
+// start.addEventListener("click", startQuiz);
+// storeScores.addEventListener("click", function() {
+//   scoreStore();
+//   location.href="./assets/highscores.html";
+// });
 
 
 
