@@ -87,45 +87,45 @@ var startQuiz = function() {
   nextQuestion();
 };
 
-// cycles through array, increases counter 
-var nextQuestion = function() {
-  var myQuestion = quizArray[questionCounter].quizArray;
-  questionName.textCOntent = myQuestion;
+// // cycles through array, increases counter 
+// var nextQuestion = function() {
+//   var myQuestion = quizArray[questionCounter].quizArray;
+//   questionName.textCOntent = myQuestion;
 
-  for (let i = 0; i < quizArray[questionCounter].answers.length; i++) {
-    var currentAnswer = document.getElementById(i + 1);
-    currentAnswer.textCOntent = quizArray[questionCounter].answers[i];
-  };
-};
+//   for (let i = 0; i < quizArray[questionCounter].answers.length; i++) {
+//     var currentAnswer = document.getElementById(i + 1);
+//     currentAnswer.textCOntent = quizArray[questionCounter].answers[i];
+//   };
+// };
 
-// verifies answers, provides color feedback on result
-var checkAnswer = function(buttonIndex) {
-  var correctAnswer = quizArray[questionCounter].correct;
-  if (correctAnswer === buttonIndex) {
-    result.style.backgroundColor = "lightgreen"
-    setTimeout(function() {
-      result.style.backgroundColor = "white";
-    }, 250);
-  }
-  else {
-    result.style.backgroundColor = "tomato"
-    setTimeout(function() {
-      result.style.backgroundColor = "white";
-    }, 250);
-    timeRemaining -= 15;
-    timerEl.textContent = "Time: " + timeRemaining;
-  }
+// // verifies answers, provides color feedback on result
+// var checkAnswer = function(buttonIndex) {
+//   var correctAnswer = quizArray[questionCounter].correct;
+//   if (correctAnswer === buttonIndex) {
+//     result.style.backgroundColor = "lightgreen"
+//     setTimeout(function() {
+//       result.style.backgroundColor = "white";
+//     }, 250);
+//   }
+//   else {
+//     result.style.backgroundColor = "tomato"
+//     setTimeout(function() {
+//       result.style.backgroundColor = "white";
+//     }, 250);
+//     timeRemaining -= 15;
+//     timerEl.textContent = "Time: " + timeRemaining;
+//   }
 
-  if (questionCounter >= 5) {
-    endQuiz();
-  }
-  else {
-    questionCounter ++;
-    nextQuestion();
-  }
-};
+//   if (questionCounter >= 5) {
+//     endQuiz();
+//   }
+//   else {
+//     questionCounter ++;
+//     nextQuestion();
+//   }
+// };
 
-var timerStart;
+// var timerStart;
 
 // var endQuiz = function () {
 //   clearInterval(timerStart);
